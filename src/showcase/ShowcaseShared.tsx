@@ -19,9 +19,9 @@ export function t(dark: boolean) {
     card: dark
       ? 'border-white/[0.07] bg-white/[0.035]'
       : 'border-black/[0.07] bg-black/[0.02]',
-    label: dark ? 'text-white/45' : 'text-black/45',
-    meta: dark ? 'text-white/25' : 'text-black/25',
-    sublabel: dark ? 'text-white/30' : 'text-black/30',
+    label: dark ? 'text-white/45' : 'text-black/65',
+    meta: dark ? 'text-white/25' : 'text-black/50',
+    sublabel: dark ? 'text-white/30' : 'text-black/55',
     divider: dark ? 'border-white/[0.07]' : 'border-black/[0.06]',
     dividerLine: dark ? 'bg-white/10' : 'bg-black/10',
   };
@@ -56,7 +56,7 @@ export function Panel({
   return (
     <div className={`rounded-2xl border ${tc.card} backdrop-blur-sm overflow-hidden`}>
       <div className={`px-5 py-3 border-b ${tc.divider} flex items-center gap-3`}>
-        {icon && <span className={dark ? 'text-white/30' : 'text-black/30'}>{icon}</span>}
+        {icon && <span className={dark ? 'text-white/30' : 'text-black/50'}>{icon}</span>}
         <span className={`text-[10px] font-mono font-bold uppercase tracking-[0.2em] ${tc.label}`}>
           {title}
         </span>
@@ -88,7 +88,7 @@ export function MatrixHeader({ states, dark }: { states: string[]; dark: boolean
 
 export function Legend({ dark }: { dark: boolean }) {
   return (
-    <p className={`text-[10px] font-mono text-center leading-loose ${dark ? 'text-white/15' : 'text-black/15'}`}>
+    <p className={`text-[10px] font-mono text-center leading-loose ${dark ? 'text-white/15' : 'text-black/40'}`}>
       <span className="opacity-60">
         ◆ all buttons are live — hover, focus, and click to test every state &nbsp;•&nbsp;
         no CSS simulations, only real component states

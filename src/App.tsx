@@ -91,10 +91,10 @@ const INP: Record<Kit, (p: { dark: boolean }) => JSX.Element> = {
 
 const th = (dark: boolean) => ({
   card:  dark ? 'border-white/[0.07] bg-white/[0.035]' : 'border-black/[0.07] bg-black/[0.02]',
-  text:  dark ? 'text-white/45'                        : 'text-black/45',
-  meta:  dark ? 'text-white/25'                        : 'text-black/25',
-  idle:  dark ? 'text-white/40 hover:text-white/70 hover:bg-white/5' : 'text-black/40 hover:text-black/70 hover:bg-black/5',
-  compIdle: dark ? 'text-white/30 border-transparent' : 'text-black/30 border-transparent',
+  text:  dark ? 'text-white/45'                        : 'text-black/65',
+  meta:  dark ? 'text-white/25'                        : 'text-black/50',
+  idle:  dark ? 'text-white/40 hover:text-white/70 hover:bg-white/5' : 'text-black/55 hover:text-black/80 hover:bg-black/8',
+  compIdle: dark ? 'text-white/30 border-transparent' : 'text-black/50 border-transparent',
 });
 
 // ═══════════════════════════════════════════════════════════════════
@@ -122,7 +122,7 @@ export default function App() {
               {/* Title row */}
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
-                  <Box size={16} className={dark ? 'text-white/25' : 'text-black/25'} />
+                  <Box size={16} className={dark ? 'text-white/25' : 'text-black/50'} />
                   <span className={`text-xs font-mono font-bold uppercase tracking-wider ${c.text}`}>Component Lab</span>
                   <span className={`hidden sm:inline text-[9px] font-mono ${c.meta}`}>// design systems playground</span>
                 </div>
@@ -144,7 +144,7 @@ export default function App() {
               {(() => {
                 const cur = KITS.find(k => k.key === kit);
                 return cur ? (
-                  <div className={`flex items-start gap-2 text-[11px] font-mono leading-relaxed ${dark ? 'text-white/30' : 'text-black/30'}`}>
+                  <div className={`flex items-start gap-2 text-[11px] font-mono leading-relaxed ${dark ? 'text-white/30' : 'text-black/50'}`}>
                     <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 mt-[3px] ${cur.active.split(' ')[0]}`} />
                     <div className="flex flex-col gap-0.5">
                       <span className={`font-bold text-xs ${dark ? 'text-white/60' : 'text-black/60'}`}>{cur.approach}</span>
@@ -169,7 +169,7 @@ export default function App() {
           <main className="max-w-6xl mx-auto space-y-6">
             <Showcase dark={dark} />
             <div>
-              <div className={`flex items-center gap-2 mb-3 text-[11px] font-mono ${dark ? 'text-white/30' : 'text-black/30'}`}>
+              <div className={`flex items-center gap-2 mb-3 text-[11px] font-mono ${dark ? 'text-white/30' : 'text-black/50'}`}>
                 <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-amber-400" />
                 <span className={`font-bold ${dark ? 'text-white/60' : 'text-black/60'}`}>Utility-first CSS</span>
                 <span className={`hidden sm:inline ${c.meta}`}>— Tailwind CSS: atomic-утилиты, JIT-компиляция, ноль рантайма</span>
