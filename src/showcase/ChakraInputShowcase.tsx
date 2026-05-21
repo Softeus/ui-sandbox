@@ -21,7 +21,7 @@ export default function ChakraInputShowcase({ dark }: { dark: boolean }) {
             <div className="grid grid-cols-3 gap-4">
               <Input placeholder="Default" />
               <Input placeholder="Disabled" disabled />
-              <Input placeholder="Error" invalid />
+              <Input placeholder="Error" aria-invalid="true" />
             </div>
           </div>
           <div>
@@ -63,20 +63,20 @@ export default function ChakraInputShowcase({ dark }: { dark: boolean }) {
           <div className="space-y-4">
             {label('Default')}
             <NativeSelect.Root>
-              <NativeSelectField>
+              <NativeSelect.Field>
                 {nativeData.map(d => (
                   <option key={d.value} value={d.value}>{d.label}</option>
                 ))}
-              </NativeSelectField>
+              </NativeSelect.Field>
               <NativeSelect.Indicator />
             </NativeSelect.Root>
             {label('Disabled')}
             <NativeSelect.Root disabled>
-              <NativeSelectField>
+              <NativeSelect.Field>
                 {nativeData.map(d => (
                   <option key={d.value} value={d.value}>{d.label}</option>
                 ))}
-              </NativeSelectField>
+              </NativeSelect.Field>
               <NativeSelect.Indicator />
             </NativeSelect.Root>
           </div>
@@ -87,7 +87,7 @@ export default function ChakraInputShowcase({ dark }: { dark: boolean }) {
             {label('States')}
             <Textarea placeholder="Default textarea…" />
             <Textarea placeholder="Disabled" disabled />
-            <Textarea placeholder="Error" invalid />
+            <Textarea placeholder="Error" aria-invalid="true" />
           </div>
         </Panel>
       </div>

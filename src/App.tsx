@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 import { ConfigProvider, theme } from 'antd';
 import { Theme as RadixTheme } from '@radix-ui/themes';
 import { Box, Sun, Moon, Columns, TextCursorInput } from 'lucide-react';
@@ -16,6 +16,8 @@ import AriakitShowcase from './showcase/AriakitShowcase';
 import MuiShowcase from './showcase/MuiShowcase';
 import BlueprintShowcase from './showcase/BlueprintShowcase';
 import TwShowcase from './showcase/TwShowcase';
+import ChakraShowcase from './showcase/ChakraShowcase';
+import ShadcnShowcase from './showcase/ShadcnShowcase';
 
 // ── Input showcases ────────────────────────────────────────────────
 import AntdInputShowcase from './showcase/AntdInputShowcase';
@@ -26,10 +28,12 @@ import AriakitInputShowcase from './showcase/AriakitInputShowcase';
 import MuiInputShowcase from './showcase/MuiInputShowcase';
 import BlueprintInputShowcase from './showcase/BlueprintInputShowcase';
 import TwInputShowcase from './showcase/TwInputShowcase';
+import ChakraInputShowcase from './showcase/ChakraInputShowcase';
+import ShadcnInputShowcase from './showcase/ShadcnInputShowcase';
 
 // ─── Types ─────────────────────────────────────────────────────────
 
-type Kit = 'antd' | 'radix' | 'mantine' | 'bootstrap' | 'ariakit' | 'mui' | 'blueprint';
+type Kit = 'antd' | 'radix' | 'mantine' | 'bootstrap' | 'ariakit' | 'mui' | 'blueprint' | 'chakra' | 'shadcn';
 type CompType = 'buttons' | 'inputs';
 
 // ─── Tab config ────────────────────────────────────────────────────
@@ -42,18 +46,22 @@ const KITS: { key: Kit; label: string; active: string }[] = [
   { key: 'ariakit',   label: 'Ariakit',    active: 'bg-teal-600 shadow-teal-600/25' },
   { key: 'mui',       label: 'MUI',        active: 'bg-cyan-600 shadow-cyan-600/25' },
   { key: 'blueprint', label: 'Blueprint',  active: 'bg-orange-600 shadow-orange-600/25' },
+  { key: 'chakra',    label: 'Chakra',     active: 'bg-green-600 shadow-green-600/25' },
+  { key: 'shadcn',    label: 'shadcn/ui',  active: 'bg-stone-600 shadow-stone-600/25' },
 ];
 
 const BTN: Record<Kit, (p: { dark: boolean }) => JSX.Element> = {
   antd: AntdShowcase, radix: RadixShowcase, mantine: MantineShowcase,
   bootstrap: BootstrapShowcase, ariakit: AriakitShowcase,
   mui: MuiShowcase, blueprint: BlueprintShowcase,
+  chakra: ChakraShowcase, shadcn: ShadcnShowcase,
 };
 
 const INP: Record<Kit, (p: { dark: boolean }) => JSX.Element> = {
   antd: AntdInputShowcase, radix: RadixInputShowcase, mantine: MantineInputShowcase,
   bootstrap: BootstrapInputShowcase, ariakit: AriakitInputShowcase,
   mui: MuiInputShowcase, blueprint: BlueprintInputShowcase,
+  chakra: ChakraInputShowcase, shadcn: ShadcnInputShowcase,
 };
 
 // ─── Theme helper ──────────────────────────────────────────────────
@@ -82,7 +90,7 @@ export default function App() {
   return (
     <RadixTheme appearance={dark ? 'dark' : 'light'} accentColor="iris">
       <ConfigProvider theme={{ algorithm: dark ? theme.darkAlgorithm : theme.defaultAlgorithm }}>
-        <div className={`min-h-screen p-4 sm:p-6 lg:p-8 transition-colors duration-300 ${dark ? 'bg-[#08080e] text-white' : 'bg-zinc-50 text-zinc-900'}`}>
+        <div className={`min-h-screen p-4 sm:p-6 lg:p-8 transition-colors duration-300 ${dark ? 'dark bg-[#08080e] text-white' : 'bg-zinc-50 text-zinc-900'}`}>
 
           {/* ══ HEADER ══ */}
           <header className="max-w-6xl mx-auto mb-6">

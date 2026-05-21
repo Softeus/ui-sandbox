@@ -5,8 +5,13 @@ import react from '@vitejs/plugin-react'
 // Vite 8's dev optimizer stalls trying to pre-bundle them all.
 // Excluding them keeps dev start instant — they serve as native ESM.
 // `vite build` is unaffected (Rolldown handles all 8000+ modules fine).
+import { fileURLToPath } from 'node:url';
+
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
+  },
   optimizeDeps: {
     include: [
       // CJS-only packages that Vite must pre-bundle for proper ESM interop.
