@@ -1,6 +1,9 @@
-import { Button, IconButton, Theme } from '@chakra-ui/react';
+import { Button, ChakraProvider, createSystem, defaultConfig, IconButton, Theme } from '@chakra-ui/react';
 import { Zap, Hash, Columns } from 'lucide-react';
 import { Panel, MatrixHeader, t } from './ShowcaseShared';
+
+// ─── Disable preflight (global CSS reset bleeds into header UI) ─────
+const system = createSystem(defaultConfig, { preflight: false } as any);
 
 // ─── Constants ──────────────────────────────────────────────────────
 
@@ -96,9 +99,11 @@ function Sizes({ dark }: { dark: boolean }) {
 
 export default function ChakraShowcase({ dark }: { dark: boolean }) {
   return (
-    <Theme appearance={dark ? 'dark' : 'light'} colorPalette="blue">
-      <Matrix dark={dark} />
-      <Sizes dark={dark} />
-    </Theme>
+    <ChakraProvider value={system}>
+      <Theme appearance={dark ? 'dark' : 'light'} colorPalette="blue">
+        <Matrix dark={dark} />
+        <Sizes dark={dark} />
+      </Theme>
+    </ChakraProvider>
   );
 }

@@ -1,6 +1,9 @@
-import { Input, Textarea, NativeSelect, Field, Theme } from '@chakra-ui/react';
+import { ChakraProvider, createSystem, defaultConfig, Field, Input, NativeSelect, Textarea, Theme } from '@chakra-ui/react';
 import { Hash } from 'lucide-react';
 import { Panel, t } from './ShowcaseShared';
+
+// ─── Disable preflight (global CSS reset bleeds into header UI) ─────
+const system = createSystem(defaultConfig, { preflight: false } as any);
 
 export default function ChakraInputShowcase({ dark }: { dark: boolean }) {
   const tc = t(dark);
@@ -13,7 +16,8 @@ export default function ChakraInputShowcase({ dark }: { dark: boolean }) {
   ];
 
   return (
-    <Theme appearance={dark ? 'dark' : 'light'} colorPalette="blue">
+    <ChakraProvider value={system}>
+      <Theme appearance={dark ? 'dark' : 'light'} colorPalette="blue">
       <Panel title="Text Inputs" subtitle="chakra v3" icon={<Hash size={14} />} dark={dark}>
         <div className="space-y-6">
           <div>
@@ -92,5 +96,6 @@ export default function ChakraInputShowcase({ dark }: { dark: boolean }) {
         </Panel>
       </div>
     </Theme>
+    </ChakraProvider>
   );
 }
