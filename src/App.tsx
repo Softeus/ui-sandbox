@@ -1,7 +1,7 @@
 import { useState, type JSX } from 'react';
 import { ConfigProvider, theme } from 'antd';
 import { Theme as RadixTheme } from '@radix-ui/themes';
-import { Box, Sun, Moon, Columns, TextCursorInput } from 'lucide-react';
+import { Box, Sun, Moon, Columns, TextCursorInput, ListFilter } from 'lucide-react';
 import '@radix-ui/themes/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@mantine/core/styles.css';
@@ -37,10 +37,25 @@ import CssModulesInputShowcase from './showcase/CssModulesInputShowcase';
 import StyledInputShowcase from './showcase/StyledInputShowcase';
 import VanillaInputShowcase from './showcase/VanillaInputShowcase';
 
+// ── Select showcases ────────────────────────────────────────────────
+import AntdSelectShowcase from './showcase/AntdSelectShowcase';
+import RadixSelectShowcase from './showcase/RadixSelectShowcase';
+import MantineSelectShowcase from './showcase/MantineSelectShowcase';
+import BootstrapSelectShowcase from './showcase/BootstrapSelectShowcase';
+import AriakitSelectShowcase from './showcase/AriakitSelectShowcase';
+import MuiSelectShowcase from './showcase/MuiSelectShowcase';
+import BlueprintSelectShowcase from './showcase/BlueprintSelectShowcase';
+import TwSelectShowcase from './showcase/TwSelectShowcase';
+import ChakraSelectShowcase from './showcase/ChakraSelectShowcase';
+import ShadcnSelectShowcase from './showcase/ShadcnSelectShowcase';
+import CssModulesSelectShowcase from './showcase/CssModulesSelectShowcase';
+import StyledSelectShowcase from './showcase/StyledSelectShowcase';
+import VanillaSelectShowcase from './showcase/VanillaSelectShowcase';
+
 // ─── Types ─────────────────────────────────────────────────────────
 
 type Kit = 'antd' | 'radix' | 'mantine' | 'bootstrap' | 'ariakit' | 'mui' | 'blueprint' | 'chakra' | 'shadcn' | 'css-modules' | 'styled' | 'vanilla';
-type CompType = 'buttons' | 'inputs';
+type CompType = 'buttons' | 'inputs' | 'selects';
 
 // ─── Tab config ────────────────────────────────────────────────────
 
@@ -87,6 +102,14 @@ const INP: Record<Kit, (p: { dark: boolean }) => JSX.Element> = {
   'css-modules': CssModulesInputShowcase, styled: StyledInputShowcase, vanilla: VanillaInputShowcase,
 };
 
+const SEL: Record<Kit, (p: { dark: boolean }) => JSX.Element> = {
+  antd: AntdSelectShowcase, radix: RadixSelectShowcase, mantine: MantineSelectShowcase,
+  bootstrap: BootstrapSelectShowcase, ariakit: AriakitSelectShowcase,
+  mui: MuiSelectShowcase, blueprint: BlueprintSelectShowcase,
+  chakra: ChakraSelectShowcase, shadcn: ShadcnSelectShowcase,
+  'css-modules': CssModulesSelectShowcase, styled: StyledSelectShowcase, vanilla: VanillaSelectShowcase,
+};
+
 // ─── Theme helper ──────────────────────────────────────────────────
 
 const th = (dark: boolean) => ({
@@ -107,8 +130,8 @@ export default function App() {
   const [dark, setDark] = useState(true);
   const c = th(dark);
 
-  const Showcase = (comp === 'buttons' ? BTN : INP)[kit];
-  const TwShow = comp === 'buttons' ? TwShowcase : TwInputShowcase;
+  const Showcase = (comp === 'buttons' ? BTN : comp === 'inputs' ? INP : SEL)[kit];
+  const TwShow = comp === 'buttons' ? TwShowcase : comp === 'inputs' ? TwInputShowcase : TwSelectShowcase;
 
   return (
     <RadixTheme appearance={dark ? 'dark' : 'light'} accentColor="iris">
@@ -132,7 +155,7 @@ export default function App() {
               </div>
 
               {/* Kit tabs */}
-              <div className="flex flex-wrap gap-1.5 mb-1.5">
+              <div className="flex flex-wrap gap-1.5 mb-4">
                 {KITS.map(k => (
                   <button key={k.key} onClick={() => setKit(k.key)}
                     className={`px-3 py-1.5 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wider transition-all ${kit === k.key ? `${k.active} text-white shadow-lg` : c.idle}`}
@@ -144,7 +167,7 @@ export default function App() {
               {(() => {
                 const cur = KITS.find(k => k.key === kit);
                 return cur ? (
-                  <div className={`flex items-start gap-2 text-[11px] font-mono leading-relaxed ${dark ? 'text-white/30' : 'text-black/50'}`}>
+                  <div className={`flex items-start gap-2 mb-4 text-[11px] font-mono leading-relaxed ${dark ? 'text-white/30' : 'text-black/50'}`}>
                     <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 mt-[3px] ${cur.active.split(' ')[0]}`} />
                     <div className="flex flex-col gap-0.5">
                       <span className={`font-bold text-xs ${dark ? 'text-white/60' : 'text-black/60'}`}>{cur.approach}</span>
@@ -156,7 +179,7 @@ export default function App() {
 
               {/* Component type tabs */}
               <div className="flex gap-1">
-                {([['buttons', 'Buttons', Columns], ['inputs', 'Inputs', TextCursorInput]] as const).map(([key, label, Icon]) => (
+                {([['buttons', 'Buttons', Columns], ['inputs', 'Inputs', TextCursorInput], ['selects', 'Selects', ListFilter]] as const).map(([key, label, Icon]) => (
                   <button key={key} onClick={() => setComp(key)}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wider transition-all ${comp === key ? `${dark ? 'text-white bg-white/10' : 'text-black bg-black/10'}` : c.compIdle}`}
                   ><Icon size={14} />{label}</button>
