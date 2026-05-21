@@ -44,19 +44,31 @@ type CompType = 'buttons' | 'inputs';
 
 // ─── Tab config ────────────────────────────────────────────────────
 
-const KITS: { key: Kit; label: string; active: string }[] = [
-  { key: 'antd',      label: 'Antd',       active: 'bg-blue-600 shadow-blue-600/25' },
-  { key: 'radix',     label: 'Radix',      active: 'bg-indigo-600 shadow-indigo-600/25' },
-  { key: 'mantine',   label: 'Mantine',    active: 'bg-pink-600 shadow-pink-600/25' },
-  { key: 'bootstrap', label: 'Bootstrap',  active: 'bg-purple-600 shadow-purple-600/25' },
-  { key: 'ariakit',   label: 'Ariakit',    active: 'bg-teal-600 shadow-teal-600/25' },
-  { key: 'mui',       label: 'MUI',        active: 'bg-cyan-600 shadow-cyan-600/25' },
-  { key: 'blueprint', label: 'Blueprint',  active: 'bg-orange-600 shadow-orange-600/25' },
-  { key: 'chakra',    label: 'Chakra',     active: 'bg-green-600 shadow-green-600/25' },
-  { key: 'shadcn',    label: 'shadcn/ui',  active: 'bg-stone-600 shadow-stone-600/25' },
-  { key: 'css-modules', label: 'CSS Modules', active: 'bg-yellow-600 shadow-yellow-600/25' },
-  { key: 'styled',    label: 'SC',          active: 'bg-pink-500 shadow-pink-500/25' },
-  { key: 'vanilla',   label: 'Vanilla Ext', active: 'bg-violet-500 shadow-violet-500/25' },
+const KITS: { key: Kit; label: string; active: string; approach: string; approachBrief: string }[] = [
+  { key: 'antd',       label: 'Antd',       active: 'bg-blue-600 shadow-blue-600/25',
+    approach: 'Runtime CSS-in-JS',       approachBrief: 'Стили генерируются в рантайме через JS (cssinjs)' },
+  { key: 'radix',      label: 'Radix',      active: 'bg-indigo-600 shadow-indigo-600/25',
+    approach: 'Design Tokens + CSS vars', approachBrief: 'Темизация через CSS custom properties, без JS-оверхеда' },
+  { key: 'mantine',    label: 'Mantine',    active: 'bg-pink-600 shadow-pink-600/25',
+    approach: 'Runtime CSS-in-JS',       approachBrief: 'Стили через Emotion: JS-объекты → style tags в рантайме' },
+  { key: 'bootstrap',  label: 'Bootstrap',  active: 'bg-purple-600 shadow-purple-600/25',
+    approach: 'Static CSS Framework',    approachBrief: 'Предкомпилированный CSS + компоненты-обёртки (react-bootstrap)' },
+  { key: 'ariakit',    label: 'Ariakit',    active: 'bg-teal-600 shadow-teal-600/25',
+    approach: 'Headless / Behavioral',   approachBrief: 'Только логика и accessibility — ноль стилей, 100% контроль дизайна' },
+  { key: 'mui',        label: 'MUI',        active: 'bg-cyan-600 shadow-cyan-600/25',
+    approach: 'Runtime CSS-in-JS',       approachBrief: 'Material Design через Emotion: styled(), sx prop, ThemeProvider' },
+  { key: 'blueprint',  label: 'Blueprint',  active: 'bg-orange-600 shadow-orange-600/25',
+    approach: 'Static CSS (SASS)',       approachBrief: 'CSS-фреймворк на SASS + React-компоненты (desktop-first)' },
+  { key: 'chakra',     label: 'Chakra',     active: 'bg-green-600 shadow-green-600/25',
+    approach: 'Compile-time CSS-in-JS',  approachBrief: 'Panda CSS: стили компилируются в статический CSS на сборке' },
+  { key: 'shadcn',     label: 'shadcn/ui',  active: 'bg-stone-600 shadow-stone-600/25',
+    approach: 'Copy-paste Components',   approachBrief: 'Не npm-пакет: готовые компоненты копируются в проект (Base UI)' },
+  { key: 'css-modules', label: 'CSS Modules', active: 'bg-yellow-600 shadow-yellow-600/25',
+    approach: 'CSS Modules (native)',    approachBrief: 'Scoped CSS на этапе сборки: имена классов хэшируются, ноль JS' },
+  { key: 'styled',     label: 'SC',          active: 'bg-pink-500 shadow-pink-500/25',
+    approach: 'Tagged Template CSS-in-JS', approachBrief: 'CSS пишется буквально как CSS внутри JS (styled-components v6)' },
+  { key: 'vanilla',    label: 'Vanilla Ext', active: 'bg-violet-500 shadow-violet-500/25',
+    approach: 'Zero-runtime CSS-in-JS',  approachBrief: 'TypeScript-first: стили компилируются, runtime — чистый CSS' },
 ];
 
 const BTN: Record<Kit, (p: { dark: boolean }) => JSX.Element> = {
@@ -120,13 +132,25 @@ export default function App() {
               </div>
 
               {/* Kit tabs */}
-              <div className="flex flex-wrap gap-1.5 mb-3">
+              <div className="flex flex-wrap gap-1.5 mb-1.5">
                 {KITS.map(k => (
                   <button key={k.key} onClick={() => setKit(k.key)}
                     className={`px-3 py-1.5 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wider transition-all ${kit === k.key ? `${k.active} text-white shadow-lg` : c.idle}`}
                   >{k.label}</button>
                 ))}
               </div>
+
+              {/* {approach indicator — selected kit} */}
+              {(() => {
+                const cur = KITS.find(k => k.key === kit);
+                return cur ? (
+                  <div className={`flex items-center gap-2 text-[9px] font-mono leading-relaxed ${dark ? 'text-white/30' : 'text-black/30'}`}>
+                    <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${cur.active.split(' ')[0]}`} />
+                    <span className="font-bold text-white/60">{cur.approach}</span>
+                    <span className={`hidden sm:inline ${c.meta}`}>— {cur.approachBrief}</span>
+                  </div>
+                ) : null;
+              })()}
 
               {/* Component type tabs */}
               <div className="flex gap-1">
@@ -142,7 +166,14 @@ export default function App() {
           {/* ══ MAIN ══ */}
           <main className="max-w-6xl mx-auto space-y-6">
             <Showcase dark={dark} />
-            <TwShow dark={dark} />
+            <div>
+              <div className={`flex items-center gap-2 mb-3 text-[9px] font-mono ${dark ? 'text-white/30' : 'text-black/30'}`}>
+                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-amber-400" />
+                <span className="font-bold text-white/60">Utility-first CSS</span>
+                <span className={`hidden sm:inline ${c.meta}`}>— Tailwind CSS: atomic-утилиты, JIT-компиляция, ноль рантайма</span>
+              </div>
+              <TwShow dark={dark} />
+            </div>
           </main>
 
         </div>
