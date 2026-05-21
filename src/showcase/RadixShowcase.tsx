@@ -34,7 +34,7 @@ function RadixMatrix({ dark }: { dark: boolean }) {
         <div className="grid min-w-[760px] gap-y-1" style={{ gridTemplateColumns: '85px repeat(6, 1fr)' }}>
           <MatrixHeader states={MATRIX_STATES.map(s => s.key)} dark={dark} />
           {RADIX_VARIANTS.map(v => (
-            <>
+            <div key={v.key} className="contents">
               <div className="flex items-center h-12">
                 <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${tc.sublabel}`}>{v.label}</span>
               </div>
@@ -56,7 +56,7 @@ function RadixMatrix({ dark }: { dark: boolean }) {
                   </div>
                 );
               })}
-            </>
+            </div>
           ))}
         </div>
       </div>

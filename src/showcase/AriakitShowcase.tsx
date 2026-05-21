@@ -102,7 +102,7 @@ function Matrix({ dark }: { dark: boolean }) {
         >
           <MatrixHeader states={displayStates.map(s => s.key)} dark={dark} />
           {STYLE_KEYS.map(sk => (
-            <>
+            <div key={sk} className="contents">
               <div className="flex items-center h-12">
                 <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${tc.sublabel}`}>
                   {STYLE_LABELS[sk]}
@@ -112,7 +112,7 @@ function Matrix({ dark }: { dark: boolean }) {
                 <div key={`${sk}-${st.key}`} className="flex justify-center items-center h-12">
                   <Btn
                     style={sk}
-                    disabled={sk === 'danger' ? undefined : st.extra?.disabled} // danger row is already "danger style"
+                    disabled={sk === 'danger' ? undefined : st.extra?.disabled}
                     loading={st.extra?.loading}
                     icon={st.extra?.icon}
                   >
@@ -120,7 +120,7 @@ function Matrix({ dark }: { dark: boolean }) {
                   </Btn>
                 </div>
               ))}
-            </>
+            </div>
           ))}
         </div>
       </div>

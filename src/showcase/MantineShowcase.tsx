@@ -40,7 +40,7 @@ function Matrix({ dark }: { dark: boolean }) {
         <div className="grid min-w-[660px] gap-y-1" style={{ gridTemplateColumns: '85px repeat(5, 1fr)' }}>
           <MatrixHeader states={states.map(s => s.key)} dark={dark} />
           {VARIANTS.map(v => (
-            <>
+            <div key={v.key} className="contents">
               <div className="flex items-center h-12">
                 <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${tc.sublabel}`}>{v.label}</span>
               </div>
@@ -57,7 +57,7 @@ function Matrix({ dark }: { dark: boolean }) {
                   </Button>
                 </div>
               ))}
-            </>
+            </div>
           ))}
         </div>
       </div>

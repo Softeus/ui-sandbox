@@ -14,6 +14,7 @@ export default defineConfig({
       'prop-types',
       'react-is',
       'react-bootstrap',
+      '@radix-ui/react-icons',
     ],
   },
 })

@@ -56,7 +56,7 @@ function Matrix({ dark }: { dark: boolean }) {
         >
           <MatrixHeader states={states.map(s => s.key)} dark={dark} />
           {allVariants.map(v => (
-            <>
+            <div key={v.key} className="contents">
               <div className="flex items-center h-12">
                 <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${tc.sublabel}`}>
                   {v.label}
@@ -74,7 +74,7 @@ function Matrix({ dark }: { dark: boolean }) {
                   </Button>
                 </div>
               ))}
-            </>
+            </div>
           ))}
         </div>
       </div>

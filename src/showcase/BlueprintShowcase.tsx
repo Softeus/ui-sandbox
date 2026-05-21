@@ -39,7 +39,7 @@ function Matrix({ dark }: { dark: boolean }) {
         >
           <MatrixHeader states={STATES.map(s => s.key)} dark={dark} />
           {INTENTS.map(inv => (
-            <>
+            <div key={inv.key} className="contents">
               <div className="flex items-center h-12">
                 <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${tc.sublabel}`}>{inv.label}</span>
               </div>
@@ -57,7 +57,7 @@ function Matrix({ dark }: { dark: boolean }) {
                   </div>
                 );
               })}
-            </>
+            </div>
           ))}
         </div>
       </div>
