@@ -4,7 +4,7 @@ import { Panel, MatrixHeader, t } from './ShowcaseShared';
 
 // ─── Constants ──────────────────────────────────────────────────────
 
-const INTENTS: { key: string; label: string }[] = [
+const INTENTS: { key: 'none' | 'primary' | 'success' | 'warning' | 'danger'; label: string }[] = [
   { key: 'none',    label: 'None' },
   { key: 'primary', label: 'Primary' },
   { key: 'success', label: 'Success' },

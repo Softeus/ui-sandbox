@@ -1,4 +1,4 @@
-import { Box, Search, User, Hash } from 'lucide-react';
+import { Box, Search } from 'lucide-react';
 import { Panel, t, Legend } from './ShowcaseShared';
 
 // ─── Shared Tailwind input class sets ──────────────────────────────

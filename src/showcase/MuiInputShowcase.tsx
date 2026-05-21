@@ -34,7 +34,7 @@ export default function MuiInputShowcase({ dark }: { dark: boolean }) {
           <div>
             {label('With icon / password')}
             <div className="grid grid-cols-3 gap-4">
-              <TextField label="Search" size="small" InputProps={{ startAdornment: <span className="text-xs opacity-50 mr-1">🔍</span> }} />
+              <TextField label="Search" size="small" slotProps={{ input: { startAdornment: <span className="text-xs opacity-50 mr-1">🔍</span> } }} />
               <TextField label="Password" type="password" size="small" />
               <TextField label="With value" size="small" defaultValue="Hello" />
             </div>

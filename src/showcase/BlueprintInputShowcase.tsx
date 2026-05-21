@@ -1,4 +1,4 @@
-import { InputGroup, HTMLSelect, TextArea, Icon } from '@blueprintjs/core';
+import { InputGroup, HTMLSelect, TextArea } from '@blueprintjs/core';
 import { Hash } from 'lucide-react';
 import { Panel, t } from './ShowcaseShared';
 

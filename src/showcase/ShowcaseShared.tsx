@@ -29,7 +29,7 @@ export function t(dark: boolean) {
 
 // ─── Badge ──────────────────────────────────────────────────────────
 
-export function Badge({ state, dark }: { state: string; dark: boolean }) {
+export function Badge({ state, dark: _dark }: { state: string; dark: boolean }) {
   const m = STATE_META[state];
   if (!m) return null;
   return (

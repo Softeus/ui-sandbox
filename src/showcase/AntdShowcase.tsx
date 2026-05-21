@@ -4,9 +4,9 @@ import { Panel, MatrixHeader, t } from './ShowcaseShared';
 
 // ─── Types ──────────────────────────────────────────────────────────
 
-// antd v6 Button accepts color/variant as string props; widen to avoid complex antd import
-type AColor = string;
-type AVariant = string;
+// antd v6 Button accepts color/variant as string props — use as any to bypass strict union checks
+type AColor = any;
+type AVariant = any;
 
 // ─── Constants ──────────────────────────────────────────────────────
 

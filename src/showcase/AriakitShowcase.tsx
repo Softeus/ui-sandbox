@@ -51,7 +51,7 @@ type StyleKey = keyof typeof STYLES;
 function Btn({
   style, children, disabled, loading, icon,
 }: {
-  style: StyleKey; children: ReactNode; disabled?: boolean; loading?: boolean; icon?: ReactNode;
+  style: StyleKey; children?: ReactNode; disabled?: boolean; loading?: boolean; icon?: ReactNode;
 }) {
   return (
     <AriaButton
@@ -188,14 +188,13 @@ function EdgeCases({ dark }: { dark: boolean }) {
             <AriaButton className={`${STYLES.secondary} w-full px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 outline-none flex items-center justify-center gap-2`}>
               <Zap size={14} /> Full Width Secondary
             </AriaButton>
-            <AriaButton
-              as="a"
+            <a
               href="#"
               className={`${STYLES.ghost} inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 outline-none`}
               onClick={e => e.preventDefault()}
             >
               Rendered as &lt;a&gt; (link)
-            </AriaButton>
+            </a>
           </div>
         </div>
         <div>
