@@ -1,0 +1,139 @@
+/* ─── CSS Modules: Button Showcase ──────────────────────────────── */
+/* No runtime, no dependencies, scoped by Vite build.               */
+
+/* ── Base button ────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  outline: none;
+  transition: background .15s, color .15s, border-color .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+.btn:focus-visible {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, .5);
+}
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+  pointer-events: none;
+}
+
+/* ── Variants ───────────────────────────────────────────────────── */
+
+.primary {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+.primary:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.secondary {
+  background: #52525b;
+  color: #e4e4e7;
+  border-color: #52525b;
+}
+.secondary:hover:not(:disabled) {
+  background: #3f3f46;
+}
+
+.outline {
+  background: transparent;
+  color: #a1a1aa;
+  border-color: #52525b;
+}
+.outline:hover:not(:disabled) {
+  background: rgba(255,255,255,.05);
+  border-color: #3b82f6;
+  color: #60a5fa;
+}
+
+.ghost {
+  background: transparent;
+  color: #a1a1aa;
+  border-color: transparent;
+}
+.ghost:hover:not(:disabled) {
+  background: rgba(255,255,255,.06);
+  color: #fff;
+}
+
+.danger {
+  background: #dc2626;
+  color: #fff;
+  border-color: #dc2626;
+}
+.danger:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+.link {
+  background: transparent;
+  color: #60a5fa;
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.link:hover:not(:disabled) {
+  color: #93c5fd;
+}
+
+/* ── Dark mode overrides ────────────────────────────────────────── */
+
+/* These are applied via .dark class from the parent app */
+.dark .primary { background: #3b82f6; border-color: #3b82f6; }
+.dark .primary:hover:not(:disabled) { background: #2563eb; }
+
+.dark .secondary { background: #27272a; color: #d4d4d8; }
+.dark .secondary:hover:not(:disabled) { background: #3f3f46; }
+
+.dark .outline { color: #a1a1aa; border-color: #3f3f46; }
+.dark .outline:hover:not(:disabled) { color: #60a5fa; border-color: #3b82f6; }
+
+.dark .danger { background: #ef4444; border-color: #ef4444; }
+.dark .danger:hover:not(:disabled) { background: #dc2626; }
+
+/* ── Sizes ───────────────────────────────────────────────────────── */
+
+.sm { padding: 4px 10px; font-size: 12px; border-radius: 6px; }
+.md { padding: 6px 14px; font-size: 13px; border-radius: 8px; }
+.lg { padding: 8px 18px; font-size: 14px; border-radius: 10px; }
+.xl { padding: 10px 22px; font-size: 15px; border-radius: 12px; }
+
+/* ── Loading spinner (pure CSS) ─────────────────────────────────── */
+
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin .5s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Danger override (via className prop) ────────────────────────── */
+
+.isDanger {
+  background: #dc2626 !important;
+  color: #fff !important;
+  border-color: #dc2626 !important;
+}
+.isDanger:hover:not(:disabled) {
+  background: #b91c1c !important;
+}

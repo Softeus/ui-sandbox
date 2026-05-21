@@ -1,0 +1,90 @@
+/* ─── CSS Modules: Input Showcase ───────────────────────────────── */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: inherit;
+  opacity: .6;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color .15s;
+}
+.input::placeholder,
+.textarea::placeholder {
+  color: #71717a;
+}
+.input:focus,
+.textarea:focus {
+  border-color: #3b82f6;
+}
+.input:disabled,
+.textarea:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.textarea {
+  min-height: 72px;
+  resize: vertical;
+  field-sizing: content;
+}
+
+.error {
+  border-color: #ef4444 !important;
+}
+.error:focus {
+  box-shadow: 0 0 0 1px #ef4444;
+}
+
+.select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color .15s;
+  appearance: auto;
+}
+.select:focus {
+  border-color: #3b82f6;
+}
+.select:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+/* Dark mode overrides */
+.dark .input,
+.dark .textarea,
+.dark .select {
+  border-color: #52525b;
+}
+.dark .input:focus,
+.dark .textarea:focus,
+.dark .select:focus {
+  border-color: #60a5fa;
+}

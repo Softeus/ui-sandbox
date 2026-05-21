@@ -18,6 +18,9 @@ import BlueprintShowcase from './showcase/BlueprintShowcase';
 import TwShowcase from './showcase/TwShowcase';
 import ChakraShowcase from './showcase/ChakraShowcase';
 import ShadcnShowcase from './showcase/ShadcnShowcase';
+import CssModulesShowcase from './showcase/CssModulesShowcase';
+import StyledShowcase from './showcase/StyledShowcase';
+import VanillaShowcase from './showcase/VanillaShowcase';
 
 // ── Input showcases ────────────────────────────────────────────────
 import AntdInputShowcase from './showcase/AntdInputShowcase';
@@ -30,10 +33,13 @@ import BlueprintInputShowcase from './showcase/BlueprintInputShowcase';
 import TwInputShowcase from './showcase/TwInputShowcase';
 import ChakraInputShowcase from './showcase/ChakraInputShowcase';
 import ShadcnInputShowcase from './showcase/ShadcnInputShowcase';
+import CssModulesInputShowcase from './showcase/CssModulesInputShowcase';
+import StyledInputShowcase from './showcase/StyledInputShowcase';
+import VanillaInputShowcase from './showcase/VanillaInputShowcase';
 
 // ─── Types ─────────────────────────────────────────────────────────
 
-type Kit = 'antd' | 'radix' | 'mantine' | 'bootstrap' | 'ariakit' | 'mui' | 'blueprint' | 'chakra' | 'shadcn';
+type Kit = 'antd' | 'radix' | 'mantine' | 'bootstrap' | 'ariakit' | 'mui' | 'blueprint' | 'chakra' | 'shadcn' | 'css-modules' | 'styled' | 'vanilla';
 type CompType = 'buttons' | 'inputs';
 
 // ─── Tab config ────────────────────────────────────────────────────
@@ -48,6 +54,9 @@ const KITS: { key: Kit; label: string; active: string }[] = [
   { key: 'blueprint', label: 'Blueprint',  active: 'bg-orange-600 shadow-orange-600/25' },
   { key: 'chakra',    label: 'Chakra',     active: 'bg-green-600 shadow-green-600/25' },
   { key: 'shadcn',    label: 'shadcn/ui',  active: 'bg-stone-600 shadow-stone-600/25' },
+  { key: 'css-modules', label: 'CSS Modules', active: 'bg-yellow-600 shadow-yellow-600/25' },
+  { key: 'styled',    label: 'SC',          active: 'bg-pink-500 shadow-pink-500/25' },
+  { key: 'vanilla',   label: 'Vanilla Ext', active: 'bg-violet-500 shadow-violet-500/25' },
 ];
 
 const BTN: Record<Kit, (p: { dark: boolean }) => JSX.Element> = {
@@ -55,6 +64,7 @@ const BTN: Record<Kit, (p: { dark: boolean }) => JSX.Element> = {
   bootstrap: BootstrapShowcase, ariakit: AriakitShowcase,
   mui: MuiShowcase, blueprint: BlueprintShowcase,
   chakra: ChakraShowcase, shadcn: ShadcnShowcase,
+  'css-modules': CssModulesShowcase, styled: StyledShowcase, vanilla: VanillaShowcase,
 };
 
 const INP: Record<Kit, (p: { dark: boolean }) => JSX.Element> = {
@@ -62,6 +72,7 @@ const INP: Record<Kit, (p: { dark: boolean }) => JSX.Element> = {
   bootstrap: BootstrapInputShowcase, ariakit: AriakitInputShowcase,
   mui: MuiInputShowcase, blueprint: BlueprintInputShowcase,
   chakra: ChakraInputShowcase, shadcn: ShadcnInputShowcase,
+  'css-modules': CssModulesInputShowcase, styled: StyledInputShowcase, vanilla: VanillaInputShowcase,
 };
 
 // ─── Theme helper ──────────────────────────────────────────────────

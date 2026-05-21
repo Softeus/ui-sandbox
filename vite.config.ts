@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 
 // Heavy UI kits (MUI, Blueprint, Mantine) bring 2000–5000 modules each.
 // Vite 8's dev optimizer stalls trying to pre-bundle them all.
@@ -8,7 +9,7 @@ import react from '@vitejs/plugin-react'
 import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), vanillaExtractPlugin()],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
