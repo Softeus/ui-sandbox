@@ -1,6 +1,6 @@
 import { Hash } from 'lucide-react';
 import { Panel, t } from './ShowcaseShared';
-import s from './CssModulesInputShowcase.module.css';
+import css from './CssModulesInputShowcase.module.css';
 
 export default function CssModulesInputShowcase({ dark }: { dark: boolean }) {
   const tc = t(dark);
@@ -9,10 +9,10 @@ export default function CssModulesInputShowcase({ dark }: { dark: boolean }) {
       {text}
     </span>
   );
-  const rootCls = dark ? s.dark : '';
-  const inpCls = (extra = '') => `${s.input} ${extra}`.trim();
-  const taCls = (extra = '') => `${s.textarea} ${extra}`.trim();
-  const selCls = (extra = '') => `${s.select} ${extra}`.trim();
+  const rootCls = dark ? css.dark : '';
+  const inpCls = (extra = '') => `${css.input} ${extra}`.trim();
+  const taCls = (extra = '') => `${css.textarea} ${extra}`.trim();
+  const selCls = (extra = '') => `${css.select} ${extra}`.trim();
 
   return (
     <>
@@ -23,7 +23,7 @@ export default function CssModulesInputShowcase({ dark }: { dark: boolean }) {
             <div className="grid grid-cols-3 gap-4">
               <input className={inpCls()} placeholder="Default" />
               <input className={inpCls()} placeholder="Disabled" disabled />
-              <input className={inpCls(s.error)} placeholder="Error" />
+              <input className={inpCls(css.error)} placeholder="Error" />
             </div>
           </div>
           <div>
@@ -37,13 +37,13 @@ export default function CssModulesInputShowcase({ dark }: { dark: boolean }) {
           <div>
             {label('With Label')}
             <div className="grid grid-cols-2 gap-4">
-              <div className={s.field}>
-                <label className={s.label} htmlFor="cm-username">Username</label>
+              <div className={css.field}>
+                <label className={css.label} htmlFor="cm-username">Username</label>
                 <input id="cm-username" className={inpCls()} placeholder="Enter username" />
               </div>
-              <div className={s.field}>
-                <label className={s.label} htmlFor="cm-email">Email (invalid)</label>
-                <input id="cm-email" className={inpCls(s.error)} placeholder="Enter email" defaultValue="bad" />
+              <div className={css.field}>
+                <label className={css.label} htmlFor="cm-email">Email (invalid)</label>
+                <input id="cm-email" className={inpCls(css.error)} placeholder="Enter email" defaultValue="bad" />
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function CssModulesInputShowcase({ dark }: { dark: boolean }) {
             {label('States')}
             <textarea className={taCls()} placeholder="Default textarea…" />
             <textarea className={taCls()} placeholder="Disabled" disabled />
-            <textarea className={taCls(s.error)} placeholder="Error" />
+            <textarea className={taCls(css.error)} placeholder="Error" />
           </div>
         </Panel>
       </div>

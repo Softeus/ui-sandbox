@@ -1,4 +1,11 @@
-import { style } from '@vanilla-extract/css';
+import { style, keyframes } from '@vanilla-extract/css';
+
+// ─── Keyframes ──────────────────────────────────────────────────────
+
+const spin = keyframes({
+  '0%': { transform: 'rotate(0deg)' },
+  '100%': { transform: 'rotate(360deg)' },
+});
 
 // ─── Base button ────────────────────────────────────────────────────
 
@@ -77,5 +84,8 @@ export const spinner = style({
   border: '2px solid currentColor',
   borderRightColor: 'transparent',
   borderRadius: '50%',
-  animation: 've-spin .5s linear infinite',
+  animationName: spin,
+  animationDuration: '.5s',
+  animationTimingFunction: 'linear',
+  animationIterationCount: 'infinite',
 });
